@@ -2,7 +2,7 @@
 This analysis seeks to predict the medal count of each country for the 2020 Summer Olympics
 
 ### Title: Olympic Medal Prediction
-Authors: Sayanti & Aaron
+Authors: Sayanti & Aaron  
 Date: 2018-11-15
 
 ### Question
