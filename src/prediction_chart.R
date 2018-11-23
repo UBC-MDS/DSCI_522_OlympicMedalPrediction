@@ -1,23 +1,21 @@
 
 #! /usr/bin/env Rscript 
-# finalTable.R
+# prediction_chart.R
 #
-# this script creates the final table with medal count of gold,  
-# silver , bronze  for specific countries. 
-# a
+# This script creates the final prediction chart with medal count of gold,  
+# silver , bronze  for specific countries. Along with that it gives the total medal count 
+# of each country.
 #
-# Usage: Rscript finalTable.R prediction_output.csv output_file.png
+# Usage: Rscript prediction_chart.R prediction_output.csv output_file.csv
+
+#library
+library(tidyverse)
+library(plyr)
 
 # read in command line arguments
-
-library(knitr)
-library(kableExtra)
-library(tidyverse)
-
 args <- commandArgs(trailingOnly = TRUE)
 input_file <- args[1]
 output_file <- args[2]
-
 
 main <- function(){ 
   # read in data
@@ -30,15 +28,7 @@ main <- function(){
                             Bronze=sum(predictions_bronze),
                             Total = sum(Gold,Silver,Bronze))
   
-  kable(prediction_chart)
-  
-  table<- prediction_chart %>%
-    kable() %>%
-    kable_styling(c("striped", "bordered",font_size = 11))%>%
-    row_spec(0, bold = T, color = "white",background="darkred")
-  
-  table
-  
+  write_csv(prediction_chart, output_file)
 }
 
 # call main function
