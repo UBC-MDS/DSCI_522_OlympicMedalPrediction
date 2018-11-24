@@ -1,199 +1,179 @@
 country,Gold,Silver,Bronze,Total
-Afghanistan,0,0,2,2
+Afghanistan,0,0,0,0
 Albania,0,0,0,0
-Algeria,5,4,10,19
-American Samoa,0,0,0,0
-Andorra,0,0,0,0
-Angola,2,0,2,4
+Algeria,0,1,1,2
+Angola,0,1,1,2
 Antigua & Barbuda,0,0,0,0
-Argentina,6,10,17,33
-Armenia,1,3,15,19
-Aruba,0,0,0,0
-Australia,111,141,162,414
-Austria,8,16,13,37
-Azerbaijan,6,17,22,45
-Bahamas,8,0,5,13
-Bahrain,1,1,1,3
+Argentina,1,2,4,7
+Armenia,0,1,1,2
+Australia,9,11,10,30
+Austria,0,0,0,0
+Azerbaijan,8,3,6,17
+Bahamas,0,1,1,2
+Bahrain,1,0,1,2
 Bangladesh,0,0,0,0
-Barbados,0,0,1,1
-Belarus,10,27,38,75
-Belgium,10,11,20,41
+Barbados,0,0,0,0
+Belarus,2,4,1,7
+Belgium,0,4,2,6
 Belize,0,0,0,0
 Benin,0,0,0,0
-Bermuda,0,0,1,1
-Bhutan,0,0,0,0
-Bolivia,0,1,2,3
-Bosnia & Herzegovina,0,0,0,0
-Botswana,0,1,0,1
-Brazil,27,38,69,134
+Bhutan,0,0,1,1
+Bolivia,0,0,0,0
+Bosnia & Herzegovina,0,1,0,1
+Botswana,0,0,1,1
+Brazil,7,5,6,18
 Brunei,0,0,0,0
-Bulgaria,33,48,52,133
+Bulgaria,3,1,0,4
 Burkina Faso,0,0,0,0
-Burundi,1,1,0,2
-CÃ´te dâ€™Ivoire,1,1,1,3
+Burundi,0,0,0,0
+CÃ´te dâ€™Ivoire,0,0,1,1
 Cambodia,0,0,0,0
-Cameroon,3,1,1,5
-Canada,59,90,97,246
+Cameroon,0,0,0,0
+Canada,4,3,12,19
 Cape Verde,0,0,0,0
-Cayman Islands,0,0,0,0
 Central African Republic,0,0,0,0
-Chad,0,2,1,3
-Chile,0,5,0,5
-China,233,156,161,550
-Colombia,5,9,13,27
-Comoros,0,0,0,0
-Congo - Brazzaville,0,1,0,1
-Congo - Kinshasa,3,1,6,10
-Costa Rica,1,7,0,8
-Croatia,8,9,12,29
-Cuba,60,56,66,182
-Cyprus,0,1,0,1
-Czechia,19,19,23,61
-Denmark,29,29,35,93
-Djibouti,0,0,1,1
+Chad,0,0,0,0
+Chile,0,0,1,1
+China,26,10,35,71
+Colombia,1,3,2,6
+Comoros,1,0,0,1
+Congo - Brazzaville,0,0,1,1
+Congo - Kinshasa,0,0,0,0
+Costa Rica,0,0,0,0
+Croatia,3,2,1,6
+Cyprus,0,0,2,2
+Czechia,1,5,1,7
+Denmark,9,2,5,16
 Dominica,0,0,0,0
-Dominican Republic,3,2,2,7
-Ecuador,3,2,2,7
-Egypt,40,6,10,56
+Dominican Republic,2,0,0,2
+Ecuador,0,0,0,0
 El Salvador,0,0,0,0
-Equatorial Guinea,0,0,0,0
-Estonia,2,3,6,11
-Ethiopia,15,9,17,41
-Fiji,1,0,0,1
-Finland,26,20,27,73
-France,109,111,137,357
-Gabon,0,1,0,1
+Equatorial Guinea,1,0,0,1
+Estonia,0,1,0,1
+Ethiopia,1,2,3,6
+Fiji,0,0,0,0
+Finland,4,3,2,9
+France,11,11,14,36
+Gabon,0,0,1,1
 Gambia,0,0,0,0
-Georgia,11,5,16,32
-Germany,341,283,345,969
-Ghana,0,1,3,4
-Greece,13,7,20,40
+Georgia,2,4,4,10
+Germany,17,10,15,42
+Ghana,0,1,0,1
+Greece,1,1,3,5
 Grenada,0,1,0,1
-Guam,0,0,0,0
-Guatemala,0,2,0,2
+Guatemala,0,0,0,0
 Guinea,0,0,0,0
 Guinea-Bissau,0,0,0,0
-Guyana,0,0,1,1
-Haiti,0,4,0,4
+Guyana,0,0,0,0
+Haiti,0,0,0,0
 Honduras,0,0,0,0
-Hungary,52,38,42,132
-Iceland,0,2,1,3
-India,3,5,11,19
-Indonesia,9,9,10,28
-Iran,14,18,21,53
+Hungary,3,5,2,10
+Iceland,0,0,0,0
+India,1,1,0,2
+Indonesia,0,2,3,5
+Iran,2,4,1,7
 Iraq,0,0,0,0
-Ireland,5,9,7,21
-Israel,1,2,5,8
-Italy,127,113,135,375
-Jamaica,21,26,19,66
-Japan,124,104,142,370
-Jordan,1,0,0,1
-Kazakhstan,21,22,26,69
-Kenya,35,43,31,109
+Ireland,4,4,0,8
+Israel,0,0,1,1
+Italy,19,12,8,39
+Jamaica,4,2,2,8
+Japan,17,10,19,46
+Jordan,0,0,0,0
+Kazakhstan,0,5,3,8
+Kenya,7,5,2,14
 Kiribati,0,0,0,0
-Kuwait,0,0,2,2
-Kyrgyzstan,0,1,3,4
-Laos,0,0,0,0
-Latvia,3,4,3,10
-Lebanon,0,0,0,0
-Lesotho,0,0,0,0
+Kyrgyzstan,0,0,0,0
+Laos,1,0,0,1
+Latvia,1,0,1,2
+Lebanon,0,0,1,1
+Lesotho,0,0,1,1
 Liberia,0,0,0,0
-Libya,0,0,0,0
-Liechtenstein,0,0,0,0
-Lithuania,3,6,10,19
+Lithuania,0,1,7,8
 Luxembourg,0,0,0,0
-Macedonia,0,0,1,1
-Madagascar,0,0,1,1
+Macedonia,0,0,0,0
+Madagascar,0,0,0,0
 Malawi,0,0,0,0
-Malaysia,0,5,5,10
+Malaysia,2,3,4,9
 Maldives,0,0,0,0
 Mali,0,0,0,0
 Malta,0,0,0,0
 Marshall Islands,0,0,0,0
 Mauritania,0,0,0,0
 Mauritius,0,0,0,0
-Mexico,10,21,30,61
+Mexico,1,0,1,2
 Micronesia (Federated States of),0,0,0,0
-Moldova,0,2,3,5
-Monaco,0,0,0,0
-Mongolia,2,5,10,17
-Montenegro,0,1,0,1
-Morocco,8,5,8,21
-Mozambique,1,1,1,3
+Moldova,1,0,0,1
+Mongolia,0,0,3,3
+Montenegro,0,0,0,0
+Morocco,1,0,0,1
+Mozambique,0,0,1,1
 Myanmar (Burma),0,0,0,0
-Namibia,0,2,0,2
+Namibia,0,0,0,0
 Nauru,0,0,0,0
-Nepal,0,1,1,2
-Netherlands,57,65,66,188
-New Zealand,43,29,40,112
-Nicaragua,7,13,0,20
-Niger,3,6,0,9
-Nigeria,4,7,16,27
-Norway,26,28,17,71
+Nepal,0,1,0,1
+Netherlands,7,7,4,18
+New Zealand,0,2,2,4
+Nicaragua,0,0,0,0
+Niger,0,0,0,0
+Nigeria,0,0,0,0
+Norway,0,0,1,1
 Oman,0,0,0,0
-Pakistan,2,1,5,8
 Palau,0,0,0,0
-Palestinian Territories,0,0,0,0
-Panama,1,0,0,1
-Papua New Guinea,1,2,0,3
-Paraguay,0,1,0,1
-Peru,4,8,8,20
-Philippines,20,5,3,28
-Poland,23,22,42,87
-Portugal,4,7,10,21
-Puerto Rico,0,2,4,6
-Qatar,0,0,4,4
-Romania,41,42,45,128
-Russia,228,199,199,626
-Rwanda,0,4,2,6
+Panama,0,0,0,0
+Papua New Guinea,0,0,0,0
+Paraguay,0,0,0,0
+Peru,0,0,0,0
+Philippines,0,0,1,1
+Poland,2,18,6,26
+Portugal,0,0,1,1
+Qatar,0,0,1,1
+Romania,0,0,0,0
+Russia,13,17,32,62
+Rwanda,0,0,0,0
 SÃ£o TomÃ© & PrÃ­ncipe,0,0,0,0
 Samoa,0,0,0,0
 San Marino,0,0,0,0
-Saudi Arabia,0,2,2,4
-Senegal,0,4,2,6
-Serbia,5,11,7,23
+Saudi Arabia,1,0,1,2
+Senegal,0,0,0,0
+Serbia,4,2,0,6
 Seychelles,0,0,0,0
 Sierra Leone,0,0,0,0
-Singapore,0,4,0,4
-Slovakia,9,11,8,28
-Slovenia,3,10,8,21
+Singapore,4,0,2,6
+Slovakia,1,0,0,1
+Slovenia,2,1,2,5
 Solomon Islands,0,0,0,0
-Somalia,0,0,0,0
-South Africa,8,17,12,37
-South Korea,77,92,78,247
-Spain,47,58,54,159
-Sri Lanka,1,7,8,16
+South Africa,1,2,4,7
+South Korea,5,5,12,22
+Spain,4,7,15,26
+Sri Lanka,0,0,0,0
 St. Kitts & Nevis,0,0,0,0
 St. Lucia,0,0,0,0
 St. Vincent & Grenadines,0,0,0,0
-Sudan,8,7,1,16
-Suriname,1,0,1,2
+Sudan,0,0,0,0
+Suriname,0,0,0,0
 Swaziland,0,0,0,0
-Sweden,31,62,48,141
-Switzerland,18,26,24,68
-Syria,1,2,2,5
-Tajikistan,1,1,2,4
-Tanzania,2,1,2,5
-Thailand,11,9,13,33
-Timor-Leste,0,1,0,1
+Sweden,10,18,1,29
+Switzerland,0,6,2,8
+Tajikistan,0,0,0,0
+Tanzania,0,0,0,0
+Thailand,2,4,1,7
+Timor-Leste,0,0,0,0
 Togo,0,0,0,0
-Tonga,0,1,0,1
-Trinidad & Tobago,2,3,10,15
-Tunisia,3,2,6,11
-Turkey,27,22,20,69
+Tonga,0,0,0,0
+Trinidad & Tobago,1,1,1,3
+Tunisia,0,0,3,3
+Turkey,0,3,4,7
 Turkmenistan,0,0,0,0
 Tuvalu,0,0,0,0
-U.S. Virgin Islands,0,2,0,2
-Uganda,2,6,2,10
-Ukraine,23,37,44,104
-United Arab Emirates,1,0,1,2
-United Kingdom,138,129,139,406
-United States,554,477,409,1440
-Uruguay,0,2,1,3
-Uzbekistan,10,7,17,34
+Uganda,0,0,0,0
+Ukraine,3,6,4,13
+United Arab Emirates,0,0,1,1
+United Kingdom,27,16,45,88
+United States,46,28,29,103
+Uruguay,0,0,0,0
+Uzbekistan,2,1,6,9
 Vanuatu,0,0,0,0
-Venezuela,2,2,8,12
-Vietnam,1,3,0,4
+Vietnam,0,0,3,3
 Yemen,0,0,0,0
-Zambia,0,1,1,2
-Zimbabwe,3,1,2,6
+Zambia,0,0,0,0
+Zimbabwe,0,0,0,0
