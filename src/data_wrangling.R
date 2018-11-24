@@ -1,13 +1,38 @@
+#! /usr/bin/env Rscript
+# data_wrangling.R
+#
+# This script wrangles the gdp, population, athlete medals, and world projections data to prepare medal 
+# count tables by year and country with relevant features
+# 
+# Usage: Rscript src/data_wrangling.R data/athlete_events.csv data/noc_regions.csv data/w_gdp.csv data/WorldPopulation.csv data/WEO_2020_gdp_pop_outlook.csv results/clean_medal_count_data.csv results/tokyo_2020_test_data.csv
+
+
+# load libraries
 library(tidyverse)
 library(magrittr)
 library(countrycode)
 library(maps)
 
-df_athlete <- read_csv("../data/athlete_events.csv")
-df_noc <- read_csv("../data/noc_regions.csv")
-df_gdp <- read_csv("../data/w_gdp.csv", skip = 3)
-df_population <- read_csv("../data/WorldPopulation.csv")
+
+# Command line arguments
+args <- commandArgs(trailingOnly = TRUE)
+input_file1 <- args[1]
+input_file2 <- args[2]
+input_file3 <- args[3]
+input_file4 <- args[4]
+input_file5 <- args[5]
+output_file1 <- args[6]
+output_file2 <- args[7]
+
+
+main <- function(){
+  
+df_athlete <- read_csv(input_file1)
+df_noc <- read_csv(input_file2)
+df_gdp <- read_csv(input_file3, skip = 3)
+df_population <- read_csv(input_file4)
 df_cities <- as.tibble(world.cities)
+df_2020_outlook <- read_csv(input_file5)
 
 
 # Tidy our gdp, population, and noc label data
@@ -39,27 +64,21 @@ df_cities %<>%
   bind_rows(tibble(Home_ISO3 = "USA", name = "Atlanta")) %>% 
   select(Home_ISO3, name) 
 
-
-# Find unique Teams, NOC, and relate them to country code
-length(df_athlete %$% unique(Team))
-length(df_athlete %$% unique(NOC))
-
-df_athlete %>% 
-  select(Team, NOC) %>% 
-  distinct() %>% 
-  group_by(NOC) %>% 
-  summarize(no_of_teams = n()) %>% 
-  arrange(desc(no_of_teams))
+df_2020_outlook %<>% 
+  filter_all(all_vars(!is.na(.))) %>% 
+  select(ISO, category = `Subject Descriptor`, value = `2020`) %>% 
+  spread(key = category, value) %>% 
+  mutate(GDP_USD = as.numeric(`Gross domestic product, current prices`) * 1000000000,
+         GDP_USD = as.numeric(GDP_USD),
+         population = as.numeric(Population) * 1000000,
+         population = as.numeric(population)) %>% 
+  filter_all(all_vars(!is.na(.))) %>% 
+  select(ISO, GDP_USD, population)
 
 
 # Lets map the region to the team using the noc data. Then find and fix the missing values.
 df_athlete %<>% 
   left_join(df_noc, by = "NOC")
-
-df_athlete %>% 
-  filter(is.na(region)) %>% 
-  select(Team, NOC, region, notes) %>% 
-  distinct()
 
 df_athlete %<>% 
   mutate(region = case_when(
@@ -116,15 +135,35 @@ df_Medals_Count <- df_athlete %>%
   filter_all(all_vars(!is.na(.))) %>% 
   left_join(df_cities, by = c("City" = "name")) %>% 
   mutate(home_adv = if_else(Home_ISO3 == ISO3, 1, 0)) %>% 
-  mutate(gdp_per_capita = GDP_USD/population,
+  mutate(gdp_per_capita = as.integer(GDP_USD/population),
          country_num = as.numeric(as.factor(country))) %>% 
   select(City, ISO3, country, country_num, year = "Year", population, 
          GDP_USD, gdp_per_capita, home_adv, tot_gold:tot_bronze)
-  
+
+
+# Create a new feature using lag to capture previous performance  
+df_Medals_Count <- df_Medals_Count %>% 
+  group_by(country) %>% 
+  arrange(country,year) %>% 
+  mutate(tot_medals = tot_gold + tot_silver + tot_bronze, 
+         last_medals = lag(tot_medals, n = 1),
+         secondLast_medals = lag(tot_medals, n = 2)) %>% 
+  filter_all(all_vars(!is.na(.)))
+
+df_2020_tokyo_test <- df_Medals_Count %>% 
+  filter(year == 2016) %>% 
+  mutate(secondLast_medals = last_medals,
+         last_medals = tot_medals,
+         home_adv = if_else(country == "Japan", 1,0)) %>% 
+  select(ISO3, country, country_num, home_adv, last_medals, secondLast_medals) %>% 
+  left_join(df_2020_outlook, by = c("ISO3" = "ISO")) %>% 
+  filter_all(all_vars(!is.na(.)))
+
 
 # Write csv of clean data.
-write_csv(df_Medals_Count, path = "../results/clean_medal_count_data.csv")
+write_csv(df_Medals_Count, path = output_file1)
+write_csv(df_2020_tokyo_test, path = output_file2)
 
+}
 
-
-  
+main()
