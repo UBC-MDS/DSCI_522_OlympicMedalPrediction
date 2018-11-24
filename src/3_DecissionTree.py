@@ -1,6 +1,6 @@
 
 # coding: utf-8
-# DecissionTree.py
+# 3_DecissionTree.py
 #
 # This script reads wrangled data and fits DecissionTreeRegressor model to predict the
 # Olympic Medal count for 2020 Summer for each country.It splits the data into 80-20 division
@@ -11,7 +11,7 @@
 # Target : tot_gold,tot_silver,tot_bronze
 # Dependencies: argparse, pandas, numpy , sklearn
 #
-# Usage: python src/DecissionTree.py results/clean_medal_count_data.csv results/prediction_output.csv
+# Usage: python src/3_DecissionTree.py results/clean_medal_count_data.csv results/prediction_output.csv
 
 # import libraries
 import argparse
