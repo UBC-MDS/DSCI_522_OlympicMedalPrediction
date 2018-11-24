@@ -1,5 +1,5 @@
 ---
-title: "Olympic Medal Count 2020 Summer."
+title: "2020 Summer Olympics Medal Count"
 output: html_document
 ---
 
@@ -11,45 +11,66 @@ library(tidyverse)
 library(plyr)
 ```
 
-### Project Background
+### Introduction
 
 _'Sports has the power to change the world.' -- Nelson Mandela_
 
-Sport has always inspired people , united them and created hope when there is only despair. It is very fascinating to see how Olympics has the same agenda of spreading peace and harmony in the World through Sports.As Sports analytics is getting better with increasing data , the concept of predicting the result of a game or how the participants will perform in their next game has become one of the most exciting domain. 
-In this project , we use 50 years of Olympic data to predict 2020 Summer Olympic medal count for each participating country.Medal count not only depends on athlete's performance but also how many participants and what are their countries wealth. As these factors are integral to build an athlete.Our prediction for 2020 Summer Olympic is on details of each country Gold, Silver, Bronze medal count depending upon these factors.
+The Olympics is the largest sporting event and is presented on a global scale. With it comes excitement, determination, unity, and a lot of data. Surely this data could shed insight on such a facsinating competition. Questions you may ask yourself are why do some countries perform better than others? Is it possible to predict how succesful a given country will be? To frame a very specific question, what will be the overall country medal count for the 2020 summer Olympics in Tokyo, Japan? This is the very question we set out to answer with this analysis.
 
-### Problem statement
-What is the medal count for each country in 2020 Summer Olympics, in each position , like Gold , Silver , Bronze? We are predicting the medal count by analysing the past data of Olympic games of Summer. 
+Understanding the driving forces behind the success of a country at the Olympics is a well studied question. As outlined in a wikipedia article on the Olympic medal count [(Wikipedia)](https://en.wikipedia.org/wiki/Olympic_medal_table#Population-size,_resources-per-person_and_multivariate_prediction_models_and_ratings), there has been several articles and research papers tackling the problem of predicting a country's performance at the Olympics. This past work has noted relevant driving forces to be the population, GDP, and past performance of a country. Another interesting claim is the relationship on a country's performance if they are the host country. To investigate further and tackle this problem lets first get our hands dirty with some data.
 
 ### The Data
 
-Our data is athlete performances in Olympic with their country , team neme , event. Also we have population and GDP of each country from the World data . We needed Olympic committee information , city information of athletes to find if they had any home advantage in that year of Olympic. 
+We have relied on data sources collected by the kind open source community, primarily on kaggle.com. Our data sources capture information on all of the athletes who performed in the olympics for the last 120 years. Relevant variables include the country they performed for, the year, the sport they competed in, the city the olympics took place in, and if they won a medal. A glimpse of this raw data is as follows:
 
-### Wrangling of Data
+Table 1. Raw Data of the Individual Athlete Performance Overtime
+![](../imgs/dataframe1.png)
 
-### Data Exploration 
+The total number of medals for each country by year was wrangled from the raw data. The team variable was not always related to country so we had to reference the NOC (National Olympic Committee) codes to get the corresponding region each athlete competed for. The regions were converted to the standard ISO3 country code which was used as a primary key through out the analysis. Additional challenges included adjusting the medal count for team events which should only account as 1 medal on the country medal table yet counted as several medals in the raw data depending on the number of athletes on a team. After taking this into account we were able to join the GDP and Population data from our other data sources. The past performance feature was manufactured using two lag variables on the total medal counts for each country. Lastly, a home court advantage feature was calculated using the city varible in the raw data. For your veiwing pleasure, the cleaned data is tabulated below.
+
+Table 2. Clean Data of the Olympic Medal Count by Country and Year
+![](../imgs/dataframe6.png)
+
+### Data Exploration
+
+Using the cleaned data, we were able to explore how effective certain features were in predicting the medal count. It is quite evident from Figure 1 and Figure 2 that for the best performing countries in 2016 they need to have a large population and a large GDP.
+
+<div style="width:50%">![](../imgs/1_pop_corr.png)</div>
+
+
+<div style="width:50%">![](../imgs/2_gdp_corr.png)</div>
+
+These features certainly carry some predictive power, but there is definetly more to the story. Let take a look at the performance of countries who hosted the olympics at home. Figure 3. illusrates exactly this. In almost all countries, if they were hosting the event they outperformed all the times that they competed not at home.
+
+<div style="width:50%">![](../imgs/3_home_adv.png)</div>
+
+Lastly, to make predictions going forward there is no surprise that we will have to consider the historical performance. Figure 4 below shows a clear correlation between a country's performance compared to how they performed in the previous two Olympics.
+
+<div style="width:50%">![](../imgs/4_historical_corr.png)</div>
+
+The features explored all proove to carry predictive power. From here we can build our prediction model.
 
 ### Analysis
 
 **Methodology**
 
-We have used DecissionTree from scikit learn , as our target data is numeric so we have used regressor. 
+We have used DecissionTree from scikit learn , as our target data is numeric so we have used regressor.
 
-We have worked with the whole set of data in three parts . 
-Our first part of data we have used for training  . 
-The second part is been used for validation . 
-The final part was only used for prediction. 
+We have worked with the whole set of data in three parts .
+Our first part of data we have used for training  .
+The second part is been used for validation .
+The final part was only used for prediction.
 
 **Implementation**
 
-The implementation process has two stages : 
+The implementation process has two stages :
 
 1.Classiffier training and validation.  
 2.The prediction stage.
 
-During the first stage the classiffier was trained on the training data . This was done in python script in Atom (titled : DecissionTree.py). The features which were chosen to train the data was extraploted from data exploration. Our features were last two years performances, home advantage , population and GDP of each country . Once we trained the data we tested on 20% of the original test data which we kept separated to find the accuracy scores . 
+During the first stage the classiffier was trained on the training data . This was done in python script in Atom (titled : DecissionTree.py). The features which were chosen to train the data was extraploted from data exploration. Our features were last two years performances, home advantage , population and GDP of each country . Once we trained the data we tested on 20% of the original test data which we kept separated to find the accuracy scores .
 
-After which we used our model to predict for only 2016 Summer Olympic to validate the performance of our model . 
+After which we used our model to predict for only 2016 Summer Olympic to validate the performance of our model .
 
 Below is the comparison of 2016 Predicted output vs Original record for top 10 countries.
 
@@ -59,9 +80,9 @@ Below is the comparison of 2016 Predicted output vs Original record for top 10 c
 data_2016 <- read.csv("../results/summary_2016.csv")
 data_org <- read.csv("../results/clean_medal_count_data.csv")
 
-data_org <-data_org %>% filter(year=='2016') 
+data_org <-data_org %>% filter(year=='2016')
 #Chart preparation
-prediction_chart_org <- ddply(data_org, ~ country, summarize, 
+prediction_chart_org <- ddply(data_org, ~ country, summarize,
                             Gold=sum(tot_gold),
                             Silver=sum(tot_silver),
                             Bronze=sum(tot_bronze),
@@ -70,31 +91,31 @@ prediction_chart_org <- ddply(data_org, ~ country, summarize,
 data_2016 <- top_n(data_2016,10,Total) %>%
   arrange(desc(Total))
 
-kable(data_2016,caption = "Table 1: Top 10 countries of Predicted Olympic 2016 (Validation)")%>%
+kable(data_2016,caption = "Table 3: Top 10 countries of Predicted Olympic 2016 (Validation)")%>%
     kable_styling(c("striped", "bordered",font_size = 11))%>%
     row_spec(0, bold = T, color = "white",background="darkred")
-  
 
-prediction_chart_org <-top_n(prediction_chart_org,10,Total) %>% 
+
+prediction_chart_org <-top_n(prediction_chart_org,10,Total) %>%
                       arrange(desc(Total))
 
-kable(prediction_chart_org,caption="Table 2 : Top 10 countries of Original Olympic 2016 ")%>%
+kable(prediction_chart_org,caption="Table 4 : Top 10 countries of Original Olympic 2016 ")%>%
     kable_styling(c("striped", "bordered",font_size = 11))%>%
     row_spec(0, bold = T, color = "white",background="darkred")
 
-    
+
 
 ```
 
-From validation we found that we are able to predict 8/10 countries in top 10 and also first four countries in same order . Our model is giving 65% to 70% accuracy . 
+From validation we found that we are able to predict 8/10 countries in top 10 and also first four countries in same order . Our model is giving 65% to 70% accuracy .
 
 In our next stage , we take fresh data of 2020 Olympic and predict on that using our model. Finally, we produce the final prediction chart of number of Gold, Silver , Bronze and Total medals for each country.
 
 ### Results
 
-Below is the final prediction table of 2020 Summer Olympic of Top 10 countries.  
+Below is the final prediction table for the 2020 Summer Olympics of the Top 10 countries and a visualization of these results.   
 
-### Table 
+#### Table
 ```{r}
 data_2020 <- read.csv("../results/summary.csv")
 
@@ -104,24 +125,38 @@ arrange(desc(Total))
 
 #data_2020<-data_2020 %>% arrange(desc(Total))
 
-kable(data_2020,caption = "Table 3: Prediction 2020 Summer Olympic (Top 10).")%>%
+kable(data_2020,caption = "Table 5: Prediction 2020 Summer Olympic (Top 10).")%>%
     kable_styling(c("striped", "bordered",font_size = 11))%>%
     row_spec(0, bold = T, color = "white",background="darkred")
-  
+
 ```
 _Note: The full table of all countries participating in 2020 Olympic Summer is in the Appendix._
 
+#### Visualisation
+```{r, echo=FALSE}
+data_2020 %>%
+  gather(Gold, Silver, Bronze, key = "Medal_type", value = "Medal_count") %>%
+  mutate(Medal_type = factor(Medal_type, levels = c("Gold", "Silver","Bronze"))) %>%
+  ggplot(aes(x = fct_reorder(country, Total), y = Medal_count, fill = Medal_type)) +
+    geom_col() +
+    coord_flip() +
+    scale_fill_manual(values=c("#D4AF37", "#C0C0C0", "#8C7853")) +
+    theme_bw() +
+    labs(title = "Figure 5.\nMedal Count Prediction for the 2020 Summer Olympics",
+         x = "Country",
+         y = "Medal Count") +
+    guides(fill = guide_legend(title = "Medal Type"))
 
-### Visualisation
 
+
+
+```
 
 ### Conclusion
 
-Predicting Olympic medal count is exciting and comes with many challenges. While doing our analysis we found that performance of athletes enhances if they play in home ground .Also the population and GDP of country matters in building athletes .Prediction of game results encompasses many dependencies  , our EDA gave us the features which we used to train our model , but we believe there are other features which will make the prediction more accurate . 
+Predicting Olympic medal count is exciting and comes with many challenges. While doing our analysis we found that performance of athletes enhances if they play in home ground .Also the population and GDP of country matters in building athletes .Prediction of game results encompasses many dependencies  , our EDA gave us the features which we used to train our model , but we believe there are other features which will make the prediction more accurate .
 
-Our prediction accuracy is 65% to 70% , this can be improved if the multicollinearity of data is handled . We would also like to try other regression model instead of decission tree , like OSL . We believe the model selection will have significant impact in the prediction accuracy. 
-
-### References
+Our prediction accuracy is 65% to 70% , this can be improved if the multicollinearity of data is handled . We would also like to try other regression model instead of decission tree , like OSL . We believe the model selection will have significant impact in the prediction accuracy.
 
 ### Appendix
 
@@ -136,9 +171,8 @@ data_2020 <- read.csv("../results/summary.csv")
 
 data_2020<-data_2020 %>% arrange(desc(Total))
 
-kable(data_2020,caption = "Table 4: Prediction 2020 Summer Olympic.")%>%
+kable(data_2020,caption = "Table 6: Prediction 2020 Summer Olympic.")%>%
     kable_styling(c("striped", "bordered",font_size = 11))%>%
     row_spec(0, bold = T, color = "white",background="darkred")
-  
-```
 
+```
