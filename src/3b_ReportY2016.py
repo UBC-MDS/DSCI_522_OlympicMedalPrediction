@@ -5,7 +5,7 @@
 
 
 # coding: utf-8
-# ReportY2016.py
+# 3b_ReportY2016.py
 #
 # This is for validation report.
 # This script reads wrangled data and fits DecissionTreeRegressor model to predict the
@@ -17,7 +17,7 @@
 # Target : tot_gold,tot_silver,tot_bronze
 # Dependencies: argparse, pandas, numpy , sklearn
 #
-# Usage: python src/DecissionTree.py results/clean_medal_count_data.csv results/report_2016.csv
+# Usage: python src/3b_DecissionTree.py results/clean_medal_count_data.csv results/report_2016.csv
 
 # import libraries
 import argparse
