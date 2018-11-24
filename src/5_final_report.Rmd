@@ -26,7 +26,7 @@ We have relied on data sources collected by the kind open source community, prim
 Table 1. Raw Data of the Individual Athlete Performance Overtime
 ![](../imgs/dataframe1.png)
 
-The total number of medals for each country by year was wrangled from the raw data. The team variable was not always related to country so we had to reference the NOC (National Olympic Committee) codes to get the corresponding region each athlete competed for. The regions were converted to the standard ISO3 country code which was used as a primary key through out the analysis. Additional challenges included adjusting the medal count for team events which should only account as 1 medal on the country medal table yet counted as several medals in the raw data depending on the number of athletes on a team. After taking this into account we were able to join the GDP and Population data from our other data sources. The past performance feature was manufactured using two lag variables on the total medal counts for each country. Lastly, a home court advantage feature was calculated using the city varible in the raw data. For your veiwing pleasure, the cleaned data is tabulated below.
+The total number of medals for each country by year was wrangled from the raw data. The team variable was not always related to country so we had to reference the NOC (National Olympic Committee) codes to get the corresponding region each athlete competed for. The regions were converted to the standard ISO3 country code which was used as a primary key through out the analysis. Additional challenges included adjusting the medal count for team events which should only account as 1 medal on the country medal table yet counted as several medals in the raw data depending on the number of athletes on a team. After taking this into account we were able to join the GDP and Population data from our other data sources. The past performance feature was manufactured using two lag variables on the total medal counts for each country. Lastly, a home court advantage feature was calculated using the city variable in the raw data. For your veiwing pleasure, the cleaned data is tabulated below.
 
 Table 2. Clean Data of the Olympic Medal Count by Country and Year
 ![](../imgs/dataframe6.png)
@@ -40,7 +40,7 @@ Using the cleaned data, we were able to explore how effective certain features w
 
 <div style="width:50%">![](../imgs/2_gdp_corr.png)</div>
 
-These features certainly carry some predictive power, but there is definetly more to the story. Let take a look at the performance of countries who hosted the olympics at home. Figure 3. illusrates exactly this. In almost all countries, if they were hosting the event they outperformed all the times that they competed not at home.
+These features certainly carry some predictive power, but there is definitely more to the story. Let take a look at the performance of countries who hosted the olympics at home. Figure 3. illusrates exactly this. In almost all countries, if they were hosting the event they outperformed all the times that they competed not at home.
 
 <div style="width:50%">![](../imgs/3_home_adv.png)</div>
 
@@ -68,9 +68,11 @@ The implementation process has two stages :
 1.Classiffier training and validation.  
 2.The prediction stage.
 
-During the first stage the classiffier was trained on the training data . This was done in python script in Atom (titled : DecissionTree.py). The features which were chosen to train the data was extraploted from data exploration. Our features were last two years performances, home advantage , population and GDP of each country . Once we trained the data we tested on 20% of the original test data which we kept separated to find the accuracy scores .
+During the first stage the classiffier was trained on the training data . This was done in python script in Atom (titled : DecissionTree.py). The features which were chosen to train the data was extraploted from data exploration. Our features were last two years performances, home advantage , population and GDP of each country . 
 
-After which we used our model to predict for only 2016 Summer Olympic to validate the performance of our model .
+As we had three targets (count of Gold , count of Silver , count of Bronze ) we had trained our model with the three specific targets and predicted with three specific targets. Once we trained the data we we used our model to predict for only 2016 Summer Olympic to validate the performance of our model . We have produced a dashbord of Top 10 countries from our prediction and original record to show the accuracy .
+
+After which we tested on 20% of the original test data which we kept separated to find the accuracy scores .
 
 Below is the comparison of 2016 Predicted output vs Original record for top 10 countries.
 
@@ -107,9 +109,17 @@ kable(prediction_chart_org,caption="Table 4 : Top 10 countries of Original Olymp
 
 ```
 
-From validation we found that we are able to predict 8/10 countries in top 10 and also first four countries in same order . Our model is giving 65% to 70% accuracy .
+ 
+From validation we found that we are able to predict 8/10 countries in top 10 and also first four countries in same order . The number of medal count does not exactly match for all but the mismatch is not extreme . We calculated the score by using scikit learn model score and we found our model is giving 65% to 70% accuracy .
 
-In our next stage , we take fresh data of 2020 Olympic and predict on that using our model. Finally, we produce the final prediction chart of number of Gold, Silver , Bronze and Total medals for each country.
+
+In our next stage , we took fresh data of 2020 Olympic and predict on that using our trained model. Our prediction cycle ran for three different targets on the 2020 data and we merged the three predictions into one data , showing which country  will win how many Gold , Silver , Bronze , along with their population , home advantage , GDP. 
+
+
+The is our raw data output which we formatted to make the dashboard of Country and medal count for Gold, Silver , Bronze and Total by running Rscript .
+
+
+Finally, we produce the final prediction chart of number of Gold, Silver , Bronze and Total medals for each country. Based on the chart we produced our visualisations .
 
 ### Results
 
@@ -156,8 +166,9 @@ data_2020 %>%
 
 Predicting Olympic medal count is exciting and comes with many challenges. While doing our analysis we found that performance of athletes enhances if they play in home ground .Also the population and GDP of country matters in building athletes .Prediction of game results encompasses many dependencies  , our EDA gave us the features which we used to train our model , but we believe there are other features which will make the prediction more accurate .
 
-Our prediction accuracy is 65% to 70% , this can be improved if the multicollinearity of data is handled . We would also like to try other regression model instead of decission tree , like OSL . We believe the model selection will have significant impact in the prediction accuracy.
 
+Our prediction accuracy is 65% to 70% , this can be improved if the multicollinearity of data is handled . We would also like to try other regression model instead of decission tree , like OSL . 
+              
 ### Appendix
 
 2020 Olympic Summer prediction (All countries):
