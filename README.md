@@ -1,52 +1,56 @@
-# DSCI_522_OlympicMedalPrediction
-This analysis seeks to predict the medal count of each country for the 2020 Summer Olympics
-
-### Title: Olympic Medal Prediction
+# Olympic Medal Prediction
 Authors: Sayanti & Aaron  
 Date: 2018-11-15
 
-#### Question
-Question type: Predictive  
-What are strong predictors to estimate the medal count of the Summer Olympics for all participating countries? 
+#### Objective
+This analysis seeks to answer the following question: What will be the country medal count for the 2020 Summer Olympics?
 
 #### Thought.
-We believe sport is one of the best way which unite a country and this is the sole purpose of the modern Olympic Games which promotes peace and unity within the international community through the medium of sports. The idea of this project occured when we tried to use athlete profile in machine learning context to measure their performance . However , we realised performance measurement of athlete has direct impact in number of medals a country wins for specific sports. Eventually , our interest in predicting next Summer Olympic medal count inspired us for this analysis.
+Sport is one of the best ways to unite a country and this is the sole purpose of the modern Olympic Games which promotes peace and unity within the international community. How successful will a country be at the olympics poses an interesting challenge that we have tackled with the analysis in this repository.
 
-#### Dataset
-The dataset includes 120 years of olympic history and was composed by Randi H Griffin and updated as of 2018-06-15.
-It can be found on [kaggle - athlete_events.csv](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results).
+#### Dependencies
 
-We have also taken into account population of each country , as more number of participants from a country enhances the probability of medal count . 
+`R` packages
+- `tidyverse`
+- `magrittr`
+- `countrycode`
+- `maps`
 
-#### Glimpse of raw data 
+`Python` packages
+- `pandas`
+- `sklearn`
+- `argparse`
 
-![](raw_data.png)
+#### Datasets (folder: data)
 
-#### Dependencies 
+To conduct our analysis we used several data sources that provided information on country population, GDP, historical olympic performance, and National Olympic Committees. The table below summarizes the data used. Further details are described in the data folder.
 
-R , Python
-
-#### Plan of Action
-
-Data :  
-Our data has  country , sport , medal win , event in which they participitated . As we want to achieve the total medal(Gold, Silver, Bronze) count for each country ; our target is medal count (Gold, Silver,Bronze) . We will wrangle the data and add population from the ??? dataset for each country . Also we will clean the data with wrong country names , duplicate records. As one of our feature is string we will convert it to integer to fit our model.
-
-Analysis:  
-As the prediction target is numerical so we will analyze the data using regression with a decision tree. We will extrapolate few information to make our feature for the model , like which countries has advantage of playing in home ground. We will check if the host city and team belongs from the same country . As population has direct impact on number of participants from each country whcih we believe will have significant effect on number of medals won by the country . We engineered the population data of each country and added it as feature.
- 
-Our features are : country, population , home ground advantage .
-Our target are   : Total gold count , total silver count , total bronze count.
-
-As we have three targets we will split the data to train vs test in 80-20 ratio and fit thrice for each target and predict thrice on the splitted test data for three target. Finally , we will merge the prediction to form the final prediction chart for each country with Gold, Silver , Bronze and total medal count . 
-
-As we are targeting 2020 Summer Olymipic our data will be filtered with Summer season only . 
-
-The results will be summarized in a table with country, gold, silver, bronze and total as column headers. The specific country and medal count values will be tabulated in each row. Additionaly this can be visualized with a columnn plot to compare country medal counts. 
-
-#### Limitation
-
-1. It does not consider the lag of past years .
-2. The prediction model needs improvement for estimating more accurately.
+|Data File|Source|Author|Updated|Description|
+|---------|------|------|-------|-----------|
+|athlete_events.csv|[kaggle.com](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results)|Randi H. Griffin|2018-06-15| 120 years of olympic history |
+|noc_regions.csv|[kaggle.com](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results)|Randi H. Griffin|2018-06-15| Olympic Committee codes and the corresponding region|
+|w_gdp.csv|[kaggle.com](https://www.kaggle.com/resulcaliskan/countries-gdps)|Resul Caliskan|2018-02-01| GDP data by country and year |
+|WorldPopulation.csv|[kaggle.com](https://www.kaggle.com/centurion1986/countries-population)|Alexander Shakhov| 2017 | Population data by country and year|
+|WEO_2020_gdp_pop_outlook.csv|[imf.org](https://www.imf.org/external/pubs/ft/weo/2018/01/weodata/index.aspx)|International Monetary Fund| 2018-04-01| World economic outlook for GDP and population in 2020 by country|
 
 
+#### Analysis (folder: src)
 
+There has been several articles and research papers investigating what influences a countries success in the olympics. This it outlined  on [Wikipedia](https://en.wikipedia.org/wiki/Olympic_medal_table#Population-size,_resources-per-person_and_multivariate_prediction_models_and_ratings). Past work suggests several strong predictors to be:  
+- Population
+- GDP
+- Past performance
+- If it is the host country.
+
+For our analysis we explored these predictors and confirmed that they do in fact strongly influence a countries performance in the olympics. With this in mind we applied a decision tree regression model to take on the ambition goal of predicting the country medal count for the 2020 Summer Olympics in Tokyo. The table below tabulates the files in our src folder.
+
+|File|Description|
+|---|---|
+|[1_data_wrangling.R]()|Tidys and Cleans our data sets to be used for EDA and prediction|
+|[2_EDA.R]()| Exploratory analysis on potential features for the prediction model|
+|[3_DecissionTree.py]()| Train Model and predict Medal count for 2020|
+|[3b_prediction_test.py]()| Validates the prediction model for the 2016 data|  
+|[4_prediction_chart.py]()| Prepares our results for the Final .Rmd report|
+|[5_Final_Report]()| Final .Rmd Report summarizing analysis and results|
+
+#### Results (docs & imgs)
