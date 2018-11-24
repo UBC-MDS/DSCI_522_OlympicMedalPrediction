@@ -1,0 +1,144 @@
+---
+title: "Olympic Medal Count 2020 Summer."
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+#library(knitr)
+library(kableExtra)
+library(tidyverse)
+library(plyr)
+```
+
+### Project Background
+
+_'Sports has the power to change the world.' -- Nelson Mandela_
+
+Sport has always inspired people , united them and created hope when there is only despair. It is very fascinating to see how Olympics has the same agenda of spreading peace and harmony in the World through Sports.As Sports analytics is getting better with increasing data , the concept of predicting the result of a game or how the participants will perform in their next game has become one of the most exciting domain. 
+In this project , we use 50 years of Olympic data to predict 2020 Summer Olympic medal count for each participating country.Medal count not only depends on athlete's performance but also how many participants and what are their countries wealth. As these factors are integral to build an athlete.Our prediction for 2020 Summer Olympic is on details of each country Gold, Silver, Bronze medal count depending upon these factors.
+
+### Problem statement
+What is the medal count for each country in 2020 Summer Olympics, in each position , like Gold , Silver , Bronze? We are predicting the medal count by analysing the past data of Olympic games of Summer. 
+
+### The Data
+
+Our data is athlete performances in Olympic with their country , team neme , event. Also we have population and GDP of each country from the World data . We needed Olympic committee information , city information of athletes to find if they had any home advantage in that year of Olympic. 
+
+### Wrangling of Data
+
+### Data Exploration 
+
+### Analysis
+
+**Methodology**
+
+We have used DecissionTree from scikit learn , as our target data is numeric so we have used regressor. 
+
+We have worked with the whole set of data in three parts . 
+Our first part of data we have used for training  . 
+The second part is been used for validation . 
+The final part was only used for prediction. 
+
+**Implementation**
+
+The implementation process has two stages : 
+
+1.Classiffier training and validation.  
+2.The prediction stage.
+
+During the first stage the classiffier was trained on the training data . This was done in python script in Atom (titled : DecissionTree.py). The features which were chosen to train the data was extraploted from data exploration. Our features were last two years performances, home advantage , population and GDP of each country . Once we trained the data we tested on 20% of the original test data which we kept separated to find the accuracy scores . 
+
+After which we used our model to predict for only 2016 Summer Olympic to validate the performance of our model . 
+
+Below is the comparison of 2016 Predicted output vs Original record for top 10 countries.
+
+```{r}
+
+
+data_2016 <- read.csv("../results/summary_2016.csv")
+data_org <- read.csv("../results/clean_medal_count_data.csv")
+
+data_org <-data_org %>% filter(year=='2016') 
+#Chart preparation
+prediction_chart_org <- ddply(data_org, ~ country, summarize, 
+                            Gold=sum(tot_gold),
+                            Silver=sum(tot_silver),
+                            Bronze=sum(tot_bronze),
+                            Total = sum(Gold,Silver,Bronze))
+
+data_2016 <- top_n(data_2016,10,Total) %>%
+  arrange(desc(Total))
+
+kable(data_2016,caption = "Table 1: Top 10 countries of Predicted Olympic 2016 (Validation)")%>%
+    kable_styling(c("striped", "bordered",font_size = 11))%>%
+    row_spec(0, bold = T, color = "white",background="darkred")
+  
+
+prediction_chart_org <-top_n(prediction_chart_org,10,Total) %>% 
+                      arrange(desc(Total))
+
+kable(prediction_chart_org,caption="Table 2 : Top 10 countries of Original Olympic 2016 ")%>%
+    kable_styling(c("striped", "bordered",font_size = 11))%>%
+    row_spec(0, bold = T, color = "white",background="darkred")
+
+    
+
+```
+
+From validation we found that we are able to predict 8/10 countries in top 10 and also first four countries in same order . Our model is giving 65% to 70% accuracy . 
+
+In our next stage , we take fresh data of 2020 Olympic and predict on that using our model. Finally, we produce the final prediction chart of number of Gold, Silver , Bronze and Total medals for each country.
+
+### Results
+
+Below is the final prediction table of 2020 Summer Olympic of Top 10 countries.  
+
+### Table 
+```{r}
+data_2020 <- read.csv("../results/summary.csv")
+
+
+data_2020 <- top_n(data_2016,10,Total) %>%
+arrange(desc(Total))
+
+#data_2020<-data_2020 %>% arrange(desc(Total))
+
+kable(data_2020,caption = "Table 3: Prediction 2020 Summer Olympic (Top 10).")%>%
+    kable_styling(c("striped", "bordered",font_size = 11))%>%
+    row_spec(0, bold = T, color = "white",background="darkred")
+  
+```
+_Note: The full table of all countries participating in 2020 Olympic Summer is in the Appendix._
+
+
+### Visualisation
+
+
+### Conclusion
+
+Predicting Olympic medal count is exciting and comes with many challenges. While doing our analysis we found that performance of athletes enhances if they play in home ground .Also the population and GDP of country matters in building athletes .Prediction of game results encompasses many dependencies  , our EDA gave us the features which we used to train our model , but we believe there are other features which will make the prediction more accurate . 
+
+Our prediction accuracy is 65% to 70% , this can be improved if the multicollinearity of data is handled . We would also like to try other regression model instead of decission tree , like OSL . We believe the model selection will have significant impact in the prediction accuracy. 
+
+### References
+
+### Appendix
+
+2020 Olympic Summer prediction (All countries):
+
+```{r}
+data_2020 <- read.csv("../results/summary.csv")
+
+
+#data_2020 <- top_n(data_2016,10,Total) %>%
+#arrange(desc(Total))
+
+data_2020<-data_2020 %>% arrange(desc(Total))
+
+kable(data_2020,caption = "Table 4: Prediction 2020 Summer Olympic.")%>%
+    kable_styling(c("striped", "bordered",font_size = 11))%>%
+    row_spec(0, bold = T, color = "white",background="darkred")
+  
+```
+
