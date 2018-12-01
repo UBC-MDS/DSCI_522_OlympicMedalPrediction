@@ -24,7 +24,7 @@ Python packages: `pandas v0.23.0`,`sklearn v0.19.1`,`argparse v1.1`
 
 #### Usage
 
-To conduct the analysis, the scripts in the src folder are run sequentially as tabulated in the src README.md. Detailed instruction are captured in the [Makefile](). The following input at the command line navigated at the root directory can be run to generate the results: `make all`
+To conduct the analysis, the scripts in the src folder are run sequentially as tabulated in the src README.md. Detailed instruction are captured in the [Makefile](https://github.com/aaronquinton/DSCI_522_OlympicMedalPrediction/blob/master/Makefile). The following input at the command line navigated at the root directory can be run to generate the results: `make all`
 
 
 
