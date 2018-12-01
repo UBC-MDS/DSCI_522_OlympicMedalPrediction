@@ -6,7 +6,7 @@
 # silver , bronze  for specific countries. Along with that it gives the total medal count
 # of each country.
 #
-# Usage: Rscript src/4_prediction_chart.R prediction_output.csv output_file.csv
+# Usage: Rscript src/4_prediction_chart.R results/prediction_output.csv results/summary.csv
 
 #library
 library(tidyverse)

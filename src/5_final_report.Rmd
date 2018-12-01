@@ -91,7 +91,7 @@ prediction_chart_org <- ddply(data_org, ~ country, summarize,
 data_2016 <- top_n(data_2016,10,Total) %>%
   arrange(desc(Total))
 
-kable(data_2016,caption = "Table 3: Top 10 countries of Predicted Olympic 2016 (Validation)")%>%
+kable(data_2016,caption = "Table 3: Top 10 countries of Predicted Olympic 2016")%>%
     kable_styling(c("striped", "bordered",font_size = 11))%>%
     row_spec(0, bold = T, color = "white",background="darkred")
 
@@ -120,7 +120,7 @@ Below is the final prediction table for the 2020 Summer Olympics of the Top 10 c
 data_2020 <- read.csv("../results/summary.csv")
 
 
-data_2020 <- top_n(data_2016,10,Total) %>%
+data_2020 <- top_n(data_2020,10,Total) %>%
 arrange(desc(Total))
 
 #data_2020<-data_2020 %>% arrange(desc(Total))
