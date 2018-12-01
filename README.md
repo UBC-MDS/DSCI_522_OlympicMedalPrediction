@@ -24,13 +24,13 @@ Python packages: `pandas v0.23.0`,`sklearn v0.19.1`,`argparse v1.1`
 
 #### Usage
 
-To conduct the analysis, the scripts in the src folder are run sequentially as tabulated in the src README.md. Detailed instruction are captured in the [Makefile](). The following input at the command line navigated at the root directory  can be run to generate the results: `make all`
+To conduct the analysis, the scripts in the src folder are run sequentially as tabulated in the src README.md. Detailed instruction are captured in the [Makefile](). The following input at the command line navigated at the root directory can be run to generate the results: `make all`
 
 
 
 #### Datasets (folder: data)
 
-To conduct our analysis we used several data sources that provided information on country population, GDP, historical olympic performance, and the National Olympic Committees. Glimpses of the .csv files anre further details can befound in the data folder.
+To conduct our analysis we used several data sources that provided information on country population, GDP, historical olympic performance, and the National Olympic Committees. Glimpses of the .csv files and further details can be found in the data folder.
 
 
 #### Analysis (folder: src)
