@@ -24,7 +24,18 @@ Python packages: `pandas v0.23.0`,`sklearn v0.19.1`,`argparse v1.1`
 
 #### Usage
 
-To conduct the analysis, the scripts in the src folder are run sequentially as tabulated in the src README.md. Detailed instruction are captured in the [Makefile](https://github.com/aaronquinton/DSCI_522_OlympicMedalPrediction/blob/master/Makefile). The following input at the command line navigated at the root directory can be run to generate the results: `make all`
+To conduct the analysis, the scripts in the src folder are run sequentially as tabulated in the [src directory](https://github.com/aaronquinton/DSCI_522_OlympicMedalPrediction/tree/master/src) README.md. Detailed instruction are captured in the [Makefile](https://github.com/aaronquinton/DSCI_522_OlympicMedalPrediction/blob/master/Makefile). The following inputs at the command line navigated at the root directory can be run to generate or clean the results respectively:  
+ - `make all`
+ - `make clean`
+
+**Docker**
+
+ To run this analysis using Docker, clone/download this repository, use the command line to navigate to the root of this project on your computer, and then type the following (filling in PATH_ON_YOUR_COMPUTER with the absolute path to the root of this project on your computer).
+
+`docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/olympic_analysis aquinton/dsci_522_olympicmedalprediction make -C '/home/olympic_analysis' all`
+
+To clean up the analysis type:  
+`docker run --rm -v PATH_ON_YOUR_COMPUTER:/home/olympic_analysis aquinton/dsci_522_olympicmedalprediction make -C '/home/olympic_analysis' clean`
 
 
 
